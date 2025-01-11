@@ -1,0 +1,51 @@
+#source = https://stackoverflow.com/questions/76881798/how-to-apply-only-terraform-changes-via-github-action-pipeline
+
+# name: Terraform Drift Detection
+
+# on:
+#   push:
+#     paths:
+#       - 'path/to/your/terraform/files/*'
+
+# jobs:
+#   detect_drift:
+#     runs-on: ubuntu-latest
+    
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Set up Terraform
+#         uses: hashicorp/setup-terraform@v1
+#         with:
+#           terraform_version: <your_version_here>
+
+#       - name: Terraform init
+#         run: terraform init
+      
+#       - name: Terraform plan
+#         id: plan
+#         run: |
+#           set +e
+#           terraform plan -detailed-exitcode -input=false -out=tfplan
+#           exit_code=$?
+#           set -e
+#           if [ $exit_code -eq 2 ]; then
+#             echo "There are pending changes."
+#             exit 0
+#           elif [ $exit_code -eq 0 ]; then
+#             echo "No changes detected in the Terraform plan."
+#             exit 0
+#           else
+#             echo "Terraform plan failed."
+#             exit 1
+#           fi
+
+#       - name: Notify failure
+#         if: ${{ failure() }}
+#         run: |
+#           echo "Pipeline failed."
+
+#       - name: Terraform apply
+#         if: steps.plan.outcome == 'success'
+#         run: terraform apply -auto-approve tfplan
