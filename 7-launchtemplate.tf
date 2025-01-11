@@ -1,6 +1,6 @@
 resource "aws_launch_template" "salsaSunday-LT-80" {
   name_prefix   = "salsaSunday-LT-80"
-  image_id      = "ami-038bba9a164eb3dc1"  
+  image_id      = "ami-038bba9a164eb3dc1"
   instance_type = "t2.micro"
 
   #key_name = "MyLinuxBox"

@@ -3,13 +3,13 @@ resource "aws_lb" "salsaSunday-LB01" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.salsaSunday-LB01-SG01.id]
-  subnets            = [
+  subnets = [
     aws_subnet.public-us-west-1a.id,
     #aws_subnet.public-us-west-1b.id,
     aws_subnet.public-us-west-1c.id
   ]
   enable_deletion_protection = false
-#Lots of death and suffering here, make sure it's false
+  #Lots of death and suffering here, make sure it's false
 
   tags = {
     Name    = "salsaSundayLoadBalancer"

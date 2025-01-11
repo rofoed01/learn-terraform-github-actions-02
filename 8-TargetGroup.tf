@@ -1,8 +1,8 @@
 resource "aws_lb_target_group" "salsaSunday-TG01-80" {
-  name     = "salsaSunday-target-group"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = aws_vpc.salsaSunday.id
+  name        = "salsaSunday-target-group"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.salsaSunday.id
   target_type = "instance"
 
   health_check {

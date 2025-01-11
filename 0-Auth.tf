@@ -9,11 +9,11 @@ terraform {
       version = "~> 3.0"
     }
   }
-  cloud { 
-        organization = "FlemingFriday-RobO" 
+  cloud {
+    organization = "FlemingFriday-RobO"
 
-    workspaces { 
-      name = "learn-terraform-github-actions" 
-    } 
-  } 
+    workspaces {
+      name = "learn-terraform-github-actions"
+    }
+  }
 }

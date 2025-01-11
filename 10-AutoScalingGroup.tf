@@ -1,17 +1,17 @@
 resource "aws_autoscaling_group" "salsaSunday-ASG-80" {
-  name_prefix           = "salsaSunday-auto-scaling-group-"
-  min_size              = 2
-  max_size              = 6
-  desired_capacity      = 4
-  vpc_zone_identifier   = [
+  name_prefix      = "salsaSunday-auto-scaling-group-"
+  min_size         = 2
+  max_size         = 6
+  desired_capacity = 4
+  vpc_zone_identifier = [
     aws_subnet.private-us-west-1a.id,
-#    aws_subnet.private-us-west-1b.id,
+    #    aws_subnet.private-us-west-1b.id,
     aws_subnet.private-us-west-1c.id
   ]
-  health_check_type          = "ELB"
-  health_check_grace_period  = 300
-  force_delete               = true
-  target_group_arns          = [aws_lb_target_group.salsaSunday-TG01-80.arn]
+  health_check_type         = "ELB"
+  health_check_grace_period = 300
+  force_delete              = true
+  target_group_arns         = [aws_lb_target_group.salsaSunday-TG01-80.arn]
 
   launch_template {
     id      = aws_launch_template.salsaSunday-LT-80.id
@@ -31,10 +31,10 @@ resource "aws_autoscaling_group" "salsaSunday-ASG-80" {
 
   # Instance protection for terminating
   initial_lifecycle_hook {
-    name                  = "scale-in-protection"
-    lifecycle_transition  = "autoscaling:EC2_INSTANCE_TERMINATING"
-    default_result        = "CONTINUE"
-    heartbeat_timeout     = 300
+    name                 = "scale-in-protection"
+    lifecycle_transition = "autoscaling:EC2_INSTANCE_TERMINATING"
+    default_result       = "CONTINUE"
+    heartbeat_timeout    = 300
   }
 
   tag {
@@ -56,7 +56,7 @@ resource "aws_autoscaling_policy" "salsaSunday_scaling_policy" {
   name                   = "salsaSunday-cpu-target"
   autoscaling_group_name = aws_autoscaling_group.salsaSunday-ASG-80.name
 
-  policy_type = "TargetTrackingScaling"
+  policy_type               = "TargetTrackingScaling"
   estimated_instance_warmup = 120
 
   target_tracking_configuration {

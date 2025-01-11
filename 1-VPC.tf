@@ -3,9 +3,9 @@ resource "aws_vpc" "salsaSunday" {
   cidr_block = "10.32.0.0/16"
 
   tags = {
-    Name = "salsaSunday"
+    Name    = "salsaSunday"
     Service = "application1"
-    Owner = "Chewbacca"
-    Planet = "Mustafar"
+    Owner   = "Chewbacca"
+    Planet  = "Mustafar"
   }
 }
